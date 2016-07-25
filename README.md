@@ -22,19 +22,25 @@ You can use any of the following commands to create distributable ready builds.
 
 ### Linux
 ```shell
+# Go into the repository
 cd Tox-client
+# Start the build for linux
 npm run build:linux
 ```
 
 ### OSX
 ```shell
+# Go into the repository
 cd Tox-client
+# Start the build for OSX
 npm run build:osx
 ```
 
 ### Windows
 ```shell
+# Go into the repository
 cd Tox-client
+# Start the build for Windows
 npm run build:windows
 ```
 

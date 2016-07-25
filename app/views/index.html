@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Tox - Chips Handson - Frosty Disco Thunder Winter Bear 💙</title>
+
+    <link rel="stylesheet" href="../assets/styles/tox.css">
+  </head>
+  <body>
+    <aside class="unselectable">
+      <section id="user-profile">
+        <img id="user-avatar" src="../assets/images/mockup/avatar-004.png">
+        <div id="user-infos">
+          <span id="user-name" class="ellipsis" tabindex="-1" contenteditable="true">Chips Handon</span>
+          <span id="user-mood" class="ellipsis" tabindex="-1" contenteditable="true">Cracking the code.</span>
+        </div>
+        <button id="user-presence">
+          <div class="contact-presence">
+            <span class="offline"></span>
+          </div>
+        </button>
+      </section>
+      <section id="contacts-list-filters">
+        <input id="contacts-list-search" placeholder="Type to search...">
+        <button id="contacts-list-filter">Online</button>
+      </section>
+      <section id="contacts-list" class="not-compact">
+        <article class="contact">
+          <img class="contact-avatar" src="../assets/images/mockup/avatar-001.png">
+          <div class="contact-infos">
+            <span class="contact-name ellipsis">Kev💙Ashcorp</span>
+            <span class="contact-mood ellipsis">Dropped the ball harder than you could ever believe</span>
+          </div>
+          <div class="contact-presence">
+            <span class="online-notify"></span>
+          </div>
+        </article>
+        <article class="contact active">
+          <img class="contact-avatar" src="../assets/images/mockup/avatar-000.png">
+          <div class="contact-infos">
+            <span class="contact-name ellipsis">Frosty Disco Thunder Winter Bear 💙</span>
+            <span class="contact-mood ellipsis">Working on my new game: Door First!</span>
+          </div>
+          <div class="contact-presence">
+            <span class="online"></span>
+          </div>
+        </article>
+        <article class="contact">
+          <img class="contact-avatar" src="../assets/images/mockup/avatar-002.jpg">
+          <div class="contact-infos">
+            <span class="contact-name ellipsis">Loli</span>
+            <span class="contact-mood ellipsis">In Britain, some birds are flying</span>
+          </div>
+          <div class="contact-presence">
+            <span class="away"></span>
+          </div>
+        </article>
+        <article class="contact">
+          <img class="contact-avatar" src="../assets/images/mockup/avatar-005.jpg">
+          <div class="contact-infos">
+            <span class="contact-name ellipsis">Rowedahelicon</span>
+            <span class="contact-mood ellipsis">What's in a word if the...</span>
+          </div>
+          <div class="contact-presence">
+            <span class="away-notify"></span>
+          </div>
+        </article>
+        <article class="contact">
+          <img class="contact-avatar" src="../assets/images/mockup/avatar-003.jpg">
+          <div class="contact-infos">
+            <span class="contact-name ellipsis">Shag Rogers</span>
+            <span class="contact-mood ellipsis">CAN'T BAG THE SHAG</span>
+          </div>
+          <div class="contact-presence">
+            <span class="busy"></span>
+          </div>
+        </article>
+        <article class="contact">
+          <img class="contact-avatar" src="../assets/images/mockup/avatar-006.jpg">
+          <div class="contact-infos">
+            <span class="contact-name ellipsis">Chris X</span>
+            <span class="contact-mood ellipsis">Arting, brb</span>
+          </div>
+          <div class="contact-presence">
+            <span class="offline-notify"></span>
+          </div>
+        </article>
+        <article class="contact">
+          <img class="contact-avatar" src="../assets/images/mockup/avatar-007.jpg">
+          <div class="contact-infos">
+            <span class="contact-name ellipsis">David (steamboat)</span>
+            <span class="contact-mood ellipsis">im good</span>
+          </div>
+          <div class="contact-presence">
+            <span class="offline"></span>
+          </div>
+        </article>
+        <article class="contact">
+          <img class="contact-avatar" src="../assets/images/icons/default-avatar.svg">
+          <div class="contact-infos">
+            <span class="contact-name ellipsis">Tristious</span>
+            <span class="contact-mood ellipsis">thanks</span>
+          </div>
+          <div class="contact-presence">
+            <span class="offline"></span>
+          </div>
+        </article>
+        <article class="contact">
+          <img class="contact-avatar" src="../assets/images/icons/default-avatar.svg">
+          <div class="contact-infos">
+            <span class="contact-name ellipsis">Vincent Estrada</span>
+            <span class="contact-mood ellipsis">txt me if u need me</span>
+          </div>
+          <div class="contact-presence">
+            <span class="offline"></span>
+          </div>
+        </article>
+      </section>
+      <section id="tox-menu">
+        <button id="add-contact"></button>
+        <button id="new-group"></button>
+        <button id="show-transfers"></button>
+        <button id="show-settings"></button>
+      </section>
+    </aside>
+    <main>
+      <header id="chatview-header">
+        <img id="contact-avatar" class="unselectable" src="../assets/images/mockup/avatar-000.png">
+        <div>
+          <span class="contact-name">Frosty Disco Thunder Winter Bear 💙</span>
+          <span class="contact-mood">Working on my new game: Door First!</span>
+        </div>
+        <section id="chatview-header-actions" class="unselectable">
+          <button id="call-audio"></button>
+          <button id="call-video"></button>
+        </section>
+      </header>
+      <section id="chatview-content"></section>
+      <section id="chatview-is-typing" class="unselectable">
+        <span class="typing-loader"></span>
+        <span class="typing-content">Frosty Disco Thunder Winter Bear 💙 is typing...</span>
+      </section>
+      <footer id="chatview-footer" class="unselectable">
+        <textarea id="chatview-entry" placeholder="Type your message here..."></textarea>
+        <div id="chatview-footer-actions">
+          <button id="chatview-emojis"></button>
+          <button id="chatview-send-file"></button>
+        </div>
+        <button id="chatview-send-message"></button>
+      </footer>
+    </main>
+    <script>
+      const filePath = __dirname;
+      console.log(filePath);
+      require('../controllers/renderer.js');
+    </script>
+  </body>
+</html>

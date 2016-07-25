@@ -1,0 +1,603 @@
+/**
+* Fonts.
+**/
+/*
+@font-face {
+  font-family: EmojiOne;
+  src:
+    local("Emoji One"),
+    local("Emoji One Color"),
+    local("EmojiOne"),
+    local("EmojiOne Color"),
+    url('../fonts/EmojiOneColor-SVGinOT.ttf');
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}*/
+
+/**
+* HTML reset.
+**/
+* {
+  box-sizing: border-box;
+  font-family: Aller;
+}
+*:focus, *:active {
+  outline: none;
+}
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex: 1;
+}
+.unselectable {
+  -webkit-user-select: none;
+  cursor: default;
+}
+.ellipsis {
+  display: inline-block;
+  white-space: nowrap;
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #6BC260;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #7cd272;
+  opacity: .7;
+}
+.emojione {
+  width: 16px;
+  height: 16px;
+
+  position: relative;
+  top: 2px;
+}
+
+/**
+* Left sidebar.
+* Usage: Contacts list.
+**/
+aside {
+  display: flex;
+  flex: 0 0 250px;
+  flex-direction: column;
+
+  background-color: #171717;
+  color: #fff;
+}
+
+/* 1. User profile */
+#user-profile {
+  height: 68px;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: row;
+}
+#user-profile #user-avatar {
+  flex: 0 0 48px;
+  height: 48px;
+  width: 36px;
+
+  /*background-color: #fff;*/
+  border-radius: 5px;
+}
+#user-profile #user-infos {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-self: center;
+  padding: 0 5px;
+}
+#user-profile #user-infos span {
+  padding: 3px 6px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#user-profile #user-infos span:active,
+#user-profile #user-infos span:focus,
+#user-profile #user-infos span:hover {
+  background-color: #333333;
+  opacity: 1;
+}
+#user-profile #user-infos #user-name {
+  font-weight: bold;
+  text-overflow: ellipsis;
+}
+#user-profile #user-infos #user-mood {
+  font-weight: lighter;
+  font-size: 12px;
+  text-overflow: ellipsis;
+}
+#user-profile #user-presence {
+  flex: 0 0 24px;
+
+  background: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#user-profile #user-presence:hover {
+  background-color: #333333;
+  opacity: 1;
+}
+#user-profile #user-presence img {
+  height: 12px;
+  width: 12px;
+}
+
+/* 2. Contacts list filters */
+#contacts-list-filters {
+  display: flex;
+  padding: 10px;
+
+  background-color: #333;
+}
+#contacts-list-filters #contacts-list-search {
+  height: 26px;
+  width: 70%;
+  padding: 5px 10px;
+  margin-right: 10px;
+
+  background-color: #171717;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}
+#contacts-list-filters #contacts-list-filter {
+  height: 26px;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  background-color: #6BC260;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}
+#contacts-list-filters #contacts-list-filter::after {
+  content: url("../images/icons/arrow-white.svg");
+  padding: 0 0 0 5px;
+}
+
+/* 3. Contacts list */
+#contacts-list {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+
+  background: #333333;
+}
+#contacts-list::-webkit-scrollbar {
+  width: 8px;
+}
+#contacts-list::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+#contacts-list::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+#contacts-list::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 10px;
+}
+#contacts-list::-webkit-scrollbar-thumb:hover {
+  background: #cccccc;
+}
+.contact {
+  display: flex;
+
+  max-height: 68px;
+  max-width: 250px;
+  padding: 10px;
+  white-space: nowrap;
+}
+.contact.active {
+  background-color: #171717;
+  color: #fff;
+}
+.contact:not(.active):hover {
+  background-color: #222222;
+  color: #fff;
+}
+.contact .contact-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 5px;
+}
+.contact .contact-infos {
+  width: 70%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-self: center;
+  padding: 10px;
+}
+.contact .contact-name {
+  width: 100%;
+  font-weight: bold;
+}
+.contact .contact-mood {
+  width: 100%;
+  font-weight: lighter;
+  font-size: 12px;
+}
+.contact-presence {
+  flex: 0 0 5%;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+
+  width: 16px;
+  height: 16px;
+}
+.contact-presence span {
+  width: 16px;
+  height: 16px;
+}
+.contact-presence .online {
+  background: url("../images/status/online.png") no-repeat center center;
+}
+.contact-presence .online-notify {
+  background: url("../images/status/online-notify.png") no-repeat center center;
+}
+.contact-presence .away {
+  background: url("../images/status/away.png") no-repeat center center;
+}
+.contact-presence .away-notify {
+  background: url("../images/status/away-notify.png") no-repeat center center;
+}
+.contact-presence .busy {
+  background: url("../images/status/busy.png") no-repeat center center;
+}
+.contact-presence .busy-notify {
+  background: url("../images/status/busy-notify.png") no-repeat center center;
+}
+.contact-presence .offline {
+  background: url("../images/status/offline.png") no-repeat center center;
+}
+.contact-presence .offline-notify {
+  background: url("../images/status/offline-notify.png") no-repeat center center;
+}
+
+/* 3-bis. Contact list .compact (variant) */
+#contacts-list.compact .contact {
+  height: 34px;
+  padding: 5px 10px;
+}
+#contacts-list.compact .contact .contact-avatar {
+  height: 24px;
+  width: 24px;
+}
+#contacts-list.compact .contact .contact-infos {
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+}
+#contacts-list.compact .contact .contact-infos span:first-child {
+  margin-right: 5px;
+}
+#contacts-list.compact .contact .contact-infos span {
+  width: 100%;
+  flex: 0 0 50%;
+}
+
+/* 4. Tox menu */
+#tox-menu {
+  display: flex;
+  /*flex: 0 0 25px;*/
+  flex-direction: row;
+}
+#tox-menu button {
+  height: 36px;
+  width: 25%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
+#tox-menu button:hover {
+  background-color: #333333 !important;
+  opacity: 1;
+}
+#tox-menu #add-contact {
+  background: url("../images/icons/add.svg") no-repeat center center;
+  background-size: 16px 16px;
+}
+#tox-menu #new-group {
+  background: url("../images/icons/group.svg") no-repeat center center;
+  background-size: 16px 16px;
+}
+#tox-menu #show-transfers {
+  background: url("../images/icons/transfers.svg") no-repeat center center;
+  background-size: 16px 16px;
+}
+#tox-menu #show-settings {
+  background: url("../images/icons/settings.svg") no-repeat center center;
+  background-size: 16px 16px;
+}
+
+/**
+* App content.
+* Usage: Messages, settings, whatever.
+**/
+main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  /*padding: 10px;*/
+}
+
+/* 1. Chatview Header */
+header#chatview-header {
+  display: flex;
+  flex: 0 0 68px;
+  flex-direction: row;
+  padding: 10px;
+}
+#chatview-header #contact-avatar {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 5px;
+}
+#chatview-header div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-self: center;
+  margin: 10px;
+}
+#chatview-header div .contact-name {
+  font-weight: bold;
+  text-overflow: ellipsis;
+}
+#chatview-header div .contact-mood {
+  font-weight: lighter;
+  font-size: 12px;
+  text-overflow: ellipsis;
+}
+#chatview-header-actions {
+  display: flex;
+  flex-direction: row;
+}
+#chatview-header-actions button {
+  display: flex;
+  flex: 0 0 48px;
+  height: 48px;
+  width: 48px;
+
+  background-color: #6BC260;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}
+#chatview-header-actions button:first-child {
+  margin-right: 10px;
+}
+#chatview-header-actions #call-audio {
+  width: 48px;
+  height: 48px;
+
+  background: #6BC260 url("../images/icons/phone.svg") no-repeat center center;
+  background-size: 35px 35px;
+}
+#chatview-header-actions #call-video {
+  width: 48px;
+  height: 48px;
+
+  background: #6BC260 url("../images/icons/video.svg") no-repeat center center;
+  background-size: 35px 35px;
+}
+
+/* 2. Chatview Content */
+section#chatview-content {
+  flex: 1;
+  /*padding: 10px;*/
+  overflow-y: auto;
+
+  border-top: 1px solid rgb(198, 209, 198);
+}
+#chatview-content::-webkit-scrollbar {
+  width: 8px;
+  margin: 0 2px;
+}
+#chatview-content::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+#chatview-content::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+#chatview-content::-webkit-scrollbar-thumb {
+  background: #eeeeee;
+  border-radius: 10px;
+}
+#chatview-content::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+#chatview-content .message {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+
+  padding: 2px 10px;
+}
+#chatview-content .message.message-outgoing .message-author {
+  font-weight: bold;
+}
+#chatview-content .message .message-author {
+  width: 60px;
+  font-size: 14px;
+}
+#chatview-content .message .message-content {
+  flex: 1;
+  padding: 0 10px;
+}
+/**
+* Fix for the word-break not working within anonymous flex content.
+* @see https://bugzilla.mozilla.org/show_bug.cgi?id=1136818
+**/
+#chatview-content .message .message-content div {
+  min-width: 0;
+  word-break: break-word; /* doesn't work in firefox */
+  word-wrap: break-word;
+  
+  font-family: Aller light;
+  font-size: 14px;
+}
+#chatview-content .message .message-timestamp {
+  display: flex;
+  align-self: flex-start;;
+
+  padding: 2px 0 0 0;
+  font-size: 10px;
+}
+#chatview-content .message:hover {
+  background-color: #eeeeee;
+}
+
+#chatview-content .message .transfer-content {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  flex-direction: row;
+  flex: 1;
+
+  margin: 0 10px;
+  padding: 5px 5px 5px 10px;
+
+  background-color: #eeeeee;
+  border-radius: 5px;
+  color: #000;
+  font-size: 12px;
+}
+#chatview-content .message .transfer-content .transfer-icon {
+  width: 16px;
+  height: 16px;
+}
+#chatview-content .message .transfer-content .transfer-name {
+  flex: 1;
+  padding: 0 10px;
+}
+#chatview-content .message .transfer-content .transfer-size {
+  padding: 0 10px;
+}
+#chatview-content .message .transfer-content .transfer-actions button {
+  background-color: #6BC260;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+}
+#chatview-content .message .transfer-content .transfer-actions button:first-child {
+  margin-right: 2px;
+}
+
+/* 3. Chatview is-typing */
+#chatview-is-typing {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+
+  border-top: 1px solid rgb(198, 209, 198);
+  color: #171717;
+  font-size: 11px;
+  opacity: .7;
+}
+#chatview-is-typing .typing-loader {
+  width: 37px;
+  height: 12px;
+  
+  background: transparent url("../images/icons/typing.gif") no-repeat center center;
+}
+#chatview-is-typing .typing-content {
+  padding: 0 10px;
+}
+
+/* 4. Chatview Footer */
+footer#chatview-footer {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+
+  border-top: 1px solid rgb(198, 209, 198);
+}
+#chatview-entry {
+  height: 50px;
+  flex: 1;
+  padding: 6px;
+
+  border: 1px solid rgb(198, 209, 198);
+  border-right: none;
+  resize: none;
+}
+#chatview-footer-actions {
+  display: flex;
+  flex-direction: column;
+
+  margin-right: 10px;
+}
+#chatview-footer-actions button {
+  flex: 0 0 25px;
+  width: 25px;
+
+  background-color: #6BC260;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+}
+#chatview-footer-actions button:first-child {
+  border-top-right-radius: 5px;
+  border-bottom: 1px solid #fff;
+}
+#chatview-footer-actions button:last-child {
+  border-bottom-right-radius: 5px;
+}
+#chatview-footer-actions #chatview-send-file,
+#chatview-footer-actions #chatview-emojis {
+  width: 25px;
+  height: 25px;
+}
+#chatview-footer-actions #chatview-send-file {
+  background: #6BC260 url("../images/icons/attachment.svg") no-repeat center center;
+  background-size: 15px 15px;
+}
+#chatview-footer-actions #chatview-emojis {
+  background: #6BC260 url("../images/icons/emojis.svg") no-repeat center center;
+  background-size: 15px 15px;
+}
+#chatview-send-message {
+  display: flex;
+  justify-content: center;
+  width: 50px;
+
+  background: #6BC260 url("../images/icons/send-message.svg") no-repeat center center;
+  background-size: 35px 35px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}
+#chatview-send-message img {
+  width: 36px;
+  height: 36px;
+}

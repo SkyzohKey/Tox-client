@@ -1,7 +1,7 @@
 # Tox client (Electron)
 A quick prototype of a Tox client powered by JS running everywhere.
 
-![Tox client screenshot](http://i.imgur.com/y0Mpx5q.png)
+![Tox client screenshot](http://i.imgur.com/y0Jea5J.png)
 
 ## To Use
 

@@ -3,9 +3,8 @@ A quick prototype of a Tox client powered by JS running everywhere.
 
 # Screenshots
 ![Tox client main window screenshot](http://i.imgur.com/y0Jea5J.png)
-![Tox client add friend modal screenshot](http://i.imgur.com/csbDNWd.png)
 
-## To Use
+## To use
 
 To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
@@ -19,6 +18,9 @@ npm install && npm run dev
 ```
 
 Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/latest).
+
+## Moaaar screenshots!
+![Tox client add friend modal screenshot](http://i.imgur.com/csbDNWd.png)
 
 ## Compiling for your OS
 You can use any of the following commands to create distributable ready builds.

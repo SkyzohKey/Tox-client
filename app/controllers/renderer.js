@@ -15,7 +15,7 @@ const stringHelper = require('../helpers/string.js');
 * Our Tox class.
 **/
 function Tox () {
-  this.mockupMode = false;
+  this.mockupMode = true;
   this.latestDirection = null;
 
   this.init();
@@ -238,9 +238,11 @@ Tox.prototype.setTitle = function (friendName) {
 * TODO: Use html templates instead of this big string.
 **/
 Tox.prototype.addMessage = function (direction, author, message, timestamp) {
-  let _author;
-  if (this.latestDirection == direction) _author = "";
-  else _author = author;
+  let _author = "";
+  if (this.latestDirection != direction) {
+    _author = author;
+  }
+  
   this.latestDirection = direction;
 
   if (timestamp === undefined) {
@@ -265,9 +267,11 @@ Tox.prototype.addMessage = function (direction, author, message, timestamp) {
 * TODO: Use html templates instead of this big string.
 **/
 Tox.prototype.addFileTransfer = function (direction, author, filename, filesize, timestamp) {
-  let _author;
-  if (this.latestDirection == direction) _author = "";
-  else _author = author;
+  let _author = "";
+  if (this.latestDirection != direction) {
+    _author = author;
+  }
+  
   this.latestDirection = direction;
 
   if (timestamp === undefined) {
@@ -277,12 +281,12 @@ Tox.prototype.addFileTransfer = function (direction, author, filename, filesize,
   const tpl = `<article class="message message-${direction}">
     <span class="message-author unselectable ellipsis">${_author.escape()}</span>
     <span class="transfer-content">
-      <img class="transfer-icon unselectable" src="../assets/images/icons/file.svg">
-      <span class="transfer-name">${filename.escape()}</span>
+      <span class="transfer-icon unselectable"></span>
+      <span class="transfer-name ellipsis">${filename.escape()}</span>
       <span class="transfer-size">${filesize.escape()}</span>
       <div class="transfer-actions unselectable">
-        <button class="transfer-accept">Accept</button>
-        <button class="transfer-reject">Reject</button>
+        <button class="transfer-accept"></button>
+        <button class="transfer-reject"></button>
       </div>
     </span>
     <span class="message-timestamp unselectable">${timestamp.escape()}</span>
@@ -297,7 +301,8 @@ Tox.prototype.addFileTransfer = function (direction, author, filename, filesize,
 window.app = new Tox();
 
 /**
-* Test for IPC handler. Permits to communicate data between main process and render process.
+* Test for IPC handler.
+* Permits to communicate data between main process and render process.
 **/
 ipc.on('protocol-activated', function (e, url) {
   console.log("tox://" + url, "activated!");

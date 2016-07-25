@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Aller Display';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Aller Display'), url('../fonts/Aller/AllerDisplay.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Aller Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Aller Light'), url('../fonts/Aller/Aller_Lt.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Aller';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Aller'), url('../fonts/Aller/Aller_Rg.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Aller Bold Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Aller Bold Italic'), url('../fonts/Aller/Aller_BdIt.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Aller Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Aller Bold'), url('../fonts/Aller/Aller_Bd.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Aller Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Aller Italic'), url('../fonts/Aller/Aller_It.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Aller Light Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Aller Light Italic'), url('../fonts/Aller/Aller_LtIt.woff') format('woff');
+}

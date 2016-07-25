@@ -2,18 +2,7 @@
 * Fonts.
 **/
 /*
-@font-face {
-  font-family: EmojiOne;
-  src:
-    local("Emoji One"),
-    local("Emoji One Color"),
-    local("EmojiOne"),
-    local("EmojiOne Color"),
-    url('../fonts/EmojiOneColor-SVGinOT.ttf');
-  font-weight: 400;
-  font-style: normal;
-  text-rendering: optimizeLegibility;
-}*/
+@import 'fonts.css';
 
 /**
 * HTML reset.
@@ -47,6 +36,9 @@ html, body {
   box-sizing: border-box;
 }
 
+/**
+* Helpers.
+**/
 button {
   background-color: #6BC260;
   border: none;
@@ -54,15 +46,39 @@ button {
   cursor: pointer;
 }
 button:hover {
-  background-color: #7cd272;
-  opacity: .7;
+  background-color: #8edb84 !important;
 }
+button:active {
+  background-color: #27ae60 !important;
+}
+
 .emojione {
   width: 16px;
   height: 16px;
 
   position: relative;
   top: 2px;
+}
+
+.green {
+  background-color: #6BC260 !important;
+  color: #ffffff !important;
+}
+.green:hover {
+  background-color: #8edb84 !important;
+}
+.green:active {
+  background-color: #27ae60 !important;
+}
+.red {
+  background-color: #e74c3c !important;
+  color: #ffffff !important;
+}
+.red:hover {
+  background-color: #f38175 !important;
+}
+.red:active {
+  background-color: #ef2929 !important;
 }
 
 /**
@@ -130,8 +146,10 @@ aside {
   cursor: pointer;
 }
 #user-profile #user-presence:hover {
-  background-color: #333333;
-  opacity: 1;
+  background-color: #333333 !important;
+}
+#user-profile #user-presence:active {
+  background-color: #555555 !important;
 }
 #user-profile #user-presence img {
   height: 12px;
@@ -485,7 +503,7 @@ section#chatview-content {
   flex: 1;
 
   margin: 0 10px;
-  padding: 5px 5px 5px 10px;
+  padding: 5px;
 
   background-color: #eeeeee;
   border-radius: 5px;
@@ -495,6 +513,9 @@ section#chatview-content {
 #chatview-content .message .transfer-content .transfer-icon {
   width: 16px;
   height: 16px;
+  
+  background: transparent url("../images/icons/file.svg") no-repeat center center;
+  background-size: 16px 16px;
 }
 #chatview-content .message .transfer-content .transfer-name {
   flex: 1;
@@ -503,14 +524,35 @@ section#chatview-content {
 #chatview-content .message .transfer-content .transfer-size {
   padding: 0 10px;
 }
+#chatview-content .message .transfer-content .transfer-actions {
+  display: flex;
+  align-self: center;
+}
 #chatview-content .message .transfer-content .transfer-actions button {
+  width: 20px;
+  height: 20px;
+
   background-color: #6BC260;
   border: none;
   border-radius: 3px;
   color: #fff;
 }
 #chatview-content .message .transfer-content .transfer-actions button:first-child {
-  margin-right: 2px;
+  margin-right: 5px;
+}
+#chatview-content .message .transfer-content .transfer-actions .transfer-accept {
+  background: #6BC260 url("../images/icons/accept.svg") no-repeat center center;
+  background-size: 12px 12px;
+}
+#chatview-content .message .transfer-content .transfer-actions .transfer-reject {
+  background: #e74c3c url("../images/icons/reject.svg") no-repeat center center;
+  background-size: 10px 10px;
+}
+#chatview-content .message .transfer-content .transfer-actions .transfer-reject:hover {
+  background-color: #f38175 !important;
+}
+#chatview-content .message .transfer-content .transfer-actions .transfer-reject:active {
+  background-color: #ef2929 !important;
 }
 
 /* 3. Chatview is-typing */
@@ -529,6 +571,7 @@ section#chatview-content {
   height: 12px;
   
   background: transparent url("../images/icons/typing.gif") no-repeat center center;
+  background-size: 37px 12px;
 }
 #chatview-is-typing .typing-content {
   padding: 0 10px;

@@ -98,6 +98,8 @@ Tox.prototype.init = function () {
 * TODO: Refactorize this.
 **/
 Tox.prototype.initTox = function () {
+  if (this.mockupMode) return; // Don't launch Toxcore in mockup mode.
+
   this.tox = new toxcore.Tox();
   
   this.tox.bootstrapSync('23.226.230.47', 33445, 'A09162D68618E742FFBCA1C2C70385E6679604B2D80EA6E84AD0996A1AC8A074'); // stal 

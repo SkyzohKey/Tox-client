@@ -1,8 +1,7 @@
 {
   "name": "Tox",
   "version": "0.1.0",
-  "description": "A minimal but customizable Tox client",
-  "main": "main.js",
+  "description": "A quick prototype of a Tox client powered by JS running everywhere",
   "scripts": {
     "dev": "electron ./app",
     "clean": "rm -rf ./dist",
@@ -16,18 +15,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+soon"
+    "url": "git+https://github.com/SkyzohKey/Tox-client.git"
   },
-  "keywords": [
-    "Tox",
-    "Client",
-    "P2P",
-    "Encryption"
-  ],
-  "author": "SkyzohKey",
+  "keywords": [ "Tox", "Toxcore", "client", "Instant Messaging", "im", "secure", "p2p", "encrypted" ],
+  "author": "SkyzohKey <skyzohkey@invmail.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/soon"
+    "url": "https://github.com/SkyzohKey/Tox-client/issues"
   },
   "devDependencies": {
     "electron-prebuilt": "^1.2.0"

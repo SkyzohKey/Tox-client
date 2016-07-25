@@ -22,9 +22,10 @@ Learn more about Electron and its API in the [documentation](http://electron.ato
 
 ## Compiling for your OS
 You can use any of the following commands to create distributable ready builds.
+
 1. Install `npm install -g electron-packager`
 
-### Linux
+###### Linux
 ```shell
 # Go into the repository
 cd Tox-client
@@ -32,7 +33,7 @@ cd Tox-client
 npm run build:linux
 ```
 
-### OSX
+###### OSX
 ```shell
 # Go into the repository
 cd Tox-client
@@ -40,7 +41,7 @@ cd Tox-client
 npm run build:osx
 ```
 
-### Windows
+###### Windows
 ```shell
 # Go into the repository
 cd Tox-client
@@ -48,4 +49,5 @@ cd Tox-client
 npm run build:windows
 ```
 
-#### License [MIT](LICENSE.md)
+#### License
+[The MIT License](LICENSE.md).

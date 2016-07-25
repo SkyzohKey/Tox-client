@@ -12,6 +12,7 @@ String.prototype.escape = function() {
     return tagsToReplace[tag] || tag;
   });
 };
+
 /**
 * Newline (\r\n) to <br> or <br/> if xhtml.
 **/

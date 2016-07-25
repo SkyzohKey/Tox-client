@@ -11,8 +11,6 @@ const dateformat = require('date-format');
 const ToxStatus = require('./ToxStatus.js');
 const stringHelper = require('../helpers/string.js');
 
-console.log("renderer", __dirname);
-
 /**
 * Our Tox class.
 **/
@@ -22,11 +20,17 @@ function Tox () {
 
   this.init();
   this.initTox();
-  if (this.mockupMode) this.mockup();
+  this.mockup();
   this.scrollChatView();
 }
 
+/**
+* Mockup function.
+* Basically all it does is inserting some messages/file transfers to demonstrate.
+**/
 Tox.prototype.mockup = function () {
+  if (this.mockupMode == false) return;
+
   let friendName = "Frosty Disco Thunder Winter Bear 💙";
   let selfName = this.profile.name;
 
@@ -43,6 +47,10 @@ Tox.prototype.mockup = function () {
   this.addMessage("incoming", friendName, "With full support for emojione!  😀😬😁😂😃😄😅😆😇😉😊🙂🙃☺😋😌😍😘😗😙😚😜😝😛🤑🤓😎🤗😏😶😐😑😒🙄🤔😳😞😟😠😡😔😕🙁☹😣😖😫😩😤😮😱😨😰😯😦😧😢😥😪😓😭😵😲🤐😷🤒🤕😴💤💩😈👿👹👺💀👻👽🤖😺😸😹😻😼😽 and many more ! ", "12:55");
 }
 
+/**
+* Window initialization.
+* Stores DOM entities for further access and define some properties.
+**/
 Tox.prototype.init = function () {
   // Initialize emojione.
   emojione.imageType = 'png';
@@ -50,6 +58,8 @@ Tox.prototype.init = function () {
   emojione.imagePathPNG = '../assets/images/emojis/png/';
   emojione.imagePathSVG = '../assets/images/emojis/svg/';
 
+  // Define a profile.
+  // TODO: Refactorize this in a class.
   this.profile = {
     name: "SkyzohKey",
     mood: "Cracking the code.",
@@ -60,12 +70,11 @@ Tox.prototype.init = function () {
     _status: document.querySelector('#user-presence .contact-presence span'),
     _avatar: document.querySelector('#user-avatar')
   };
-  
-  console.log(this.profile._status);
 
   this.profile._name.textContent = this.profile.name;
   this.profile._mood.textContent = this.profile.mood;
 
+  // Store DOM nodes for further access.
   this.entryMessage = document.querySelector('#chatview-entry');
   this.buttonSendMessage = document.querySelector('#chatview-send-message');
   this.buttonAddContact = document.querySelector('#tox-menu #add-contact');
@@ -76,12 +85,18 @@ Tox.prototype.init = function () {
   this.contactslist = document.querySelector('#contacts-list');
   this.chatview = document.querySelector('#chatview-content');
 
+  // Update window title and focus the entry.
   this.setTitle("Frosty Disco Thunder Winter Bear 💙");
   this.entryMessage.focus();
 
+  // Let's bind the events we will use.
   this.bindEvents();
 };
 
+/**
+* Toxcore initialization.
+* TODO: Refactorize this.
+**/
 Tox.prototype.initTox = function () {
   this.tox = new toxcore.Tox();
   
@@ -106,6 +121,9 @@ Tox.prototype.initTox = function () {
   this.tox.start();
 };
 
+/**
+* onSelfConnection - Callback that gets called when tox connection changes.
+**/
 Tox.prototype.onSelfConnection = function (e) {
   if (e.isConnected()) {
     this.profile._status.classList.remove('offline');
@@ -120,6 +138,10 @@ Tox.prototype.onSelfConnection = function (e) {
   }
 };
 
+/**
+* onFriendRequest - Callback that gets called when we receive a friend request.
+* TODO: Find why node-ffi return an error.
+**/
 Tox.prototype.onFriendRequest = function (e) {  
   try {
     console.log(e);
@@ -130,6 +152,25 @@ Tox.prototype.onFriendRequest = function (e) {
   }
 };
 
+/**
+* onNameChange - Callback that gets called once self name is changed.
+**/
+Tox.prototype.onNameChange = function (e, name) {
+  console.log("Name changed.", name);
+  this.tox.setNameSync(name); // Update the toxcore name.
+  this.setTitle("Frosty Disco Thunder Winter Bear 💙");
+
+  var _messages = document.querySelectorAll('.message-outgoing span.message-author');
+  for (var message in _messages) {
+    if (_messages.hasOwnProperty(message)) {
+      message.textContent = this.profile.name;
+    }
+  }
+}
+
+/**
+* bindEvents - Bind DOM events and dispatch them to the correct event handlers.
+**/
 Tox.prototype.bindEvents = function () {
   // We handle profile name/mood/status/avatar changes.
   this.profile._name.addEventListener('input', function (e) {
@@ -173,16 +214,27 @@ Tox.prototype.bindEvents = function () {
   }.bind(this));
 }
 
+/**
+* scrollChatView - Scroll to the chatview bottom.
+**/
 Tox.prototype.scrollChatView = function () {
   var elem = document.querySelector('#chatview-content');
   elem.scrollTop = elem.scrollHeight;
 };
 
+/**
+* setTitle - Correctly set the Window title.
+**/
 Tox.prototype.setTitle = function (friendName) {
   const title = "Tox - " + this.profile.name + " - " + friendName;
   document.title = title;
 }
 
+/**
+* addMessage - Add a message to the current chatview.
+* TODO: Refactorize this using a Message class.
+* TODO: Use html templates instead of this big string.
+**/
 Tox.prototype.addMessage = function (direction, author, message, timestamp) {
   let _author;
   if (this.latestDirection == direction) _author = "";
@@ -205,6 +257,11 @@ Tox.prototype.addMessage = function (direction, author, message, timestamp) {
   this.scrollChatView();
 }
 
+/**
+* addMessage - Add a message to the current chatview.
+* TODO: Refactorize this via a FileTransfer class.
+* TODO: Use html templates instead of this big string.
+**/
 Tox.prototype.addFileTransfer = function (direction, author, filename, filesize, timestamp) {
   let _author;
   if (this.latestDirection == direction) _author = "";
@@ -234,24 +291,12 @@ Tox.prototype.addFileTransfer = function (direction, author, filename, filesize,
   this.scrollChatView();
 }
 
-Tox.prototype.test = function () {
-  alert("teeest");
-};
-
-Tox.prototype.onNameChange = function (e, name) {
-  console.log("Name changed.", name);
-  this.setTitle("Frosty Disco Thunder Winter Bear 💙");
-
-  var _messages = document.querySelectorAll('.message-outgoing span.message-author');
-  for (var message in _messages) {
-    if (_messages.hasOwnProperty(message)) {
-      message.textContent = this.profile.name;
-    }
-  }
-}
-
+// Let's start our app.
 window.app = new Tox();
 
+/**
+* Test for IPC handler. Permits to communicate data between main process and render process.
+**/
 ipc.on('protocol-activated', function (e, url) {
   console.log("tox://" + url, "activated!");
   if (url == "test") {

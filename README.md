@@ -51,5 +51,5 @@ cd Tox-client
 npm run build:windows
 ```
 
-#### License
+# License
 [The MIT License](LICENSE.md).

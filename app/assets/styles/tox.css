@@ -1,8 +1,8 @@
 /**
 * Fonts.
 **/
-/*
 @import 'fonts.css';
+@import 'fa.css';
 
 /**
 * HTML reset.
@@ -454,6 +454,24 @@ section#chatview-content {
 #chatview-content::-webkit-scrollbar-thumb:hover {
   background: #ccc;
 }
+#chatview-content .info-message {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+
+  padding: 5px 55px;
+}
+#chatview-content .info-message .fa {
+  margin-right: 10px;
+  
+  color: #6BC260;
+  font-size: 18px;
+}
+#chatview-content .info-message .info-message-content {
+  font-size: 14px;
+  font-weight: lighter;
+}
+
 #chatview-content .message {
   display: flex;
   flex-direction: row;
@@ -465,7 +483,9 @@ section#chatview-content {
   font-weight: bold;
 }
 #chatview-content .message .message-author {
-  width: 60px;
+  flex: 0 0 60px;
+  padding: 2px 0 0 0;
+  
   font-size: 14px;
 }
 #chatview-content .message .message-content {
@@ -486,7 +506,9 @@ section#chatview-content {
 }
 #chatview-content .message .message-timestamp {
   display: flex;
-  align-self: flex-start;;
+  flex: 0 0 30px;
+  align-self: flex-start;
+  justify-content: flex-end;
 
   padding: 2px 0 0 0;
   font-size: 10px;
@@ -640,7 +662,113 @@ footer#chatview-footer {
   border-radius: 5px;
   color: #fff;
 }
-#chatview-send-message img {
-  width: 36px;
-  height: 36px;
+
+#overlay.show {  
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  
+  background-color: #000000;
+  opacity: .5;
 }
+
+#dialog-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+dialog.hide { display: none !important; }
+dialog::backdrop {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  
+  background-color: #000000;
+  opacity: .5;
+  cursor: pointer;
+}
+dialog {
+  min-height: 200px;
+  height: auto;
+  width: 400px;
+  padding: 0;
+  
+  position: absolute;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  flex: 1;
+  
+  background-color: #222222;
+  border: 1px solid #171717;
+  border-top: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #fff;
+}
+dialog .dialog-header {
+  display: flex;
+  flex: 0 0 40px;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+  
+  background-color: #333333;
+  color: #fff;
+  font-size: 18px;
+}
+dialog .dialog-header .fa {
+  margin-right: 10px;
+  font-size: 16px;
+}
+dialog .dialog-content {
+  padding: 10px;
+}
+dialog .dialog-content label {
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+dialog .dialog-content input,
+dialog .dialog-content textarea {
+  min-height: 26px;
+  width: 100%;
+  padding: 5px 10px;
+  background-color: #171717;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}
+dialog .dialog-content textarea {
+  height: 60px;
+  resize: none;
+}
+dialog .dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+
+  padding: 10px;
+  
+  background-color: #333333;
+  color: #fff;
+}
+dialog .dialog-footer .dialog-close-tip {
+  display: flex;
+  align-self: center;
+  flex: 1;
+  
+  font-size: 12px;
+  font-style: italic;
+}
+dialog .dialog-footer button:first-child {
+  margin-right: 10px;
+}
+dialog .dialog-footer button {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+

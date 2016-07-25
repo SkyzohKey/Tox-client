@@ -149,6 +149,30 @@
         <button id="chatview-send-message"></button>
       </footer>
     </main>
+    
+    <!-- Overlay + modal -->
+    <div id="overlay" class=""></div>
+    <div id="dialog-wrapper">
+      <dialog id="add-friend-modal" class="hide">
+        <header class="dialog-header unselectable">
+          <span class="fa fa-plus-circle"></span> Add a friend
+        </header>
+        <main class="dialog-content unselectable">
+          <label>ToxID or alias:</label>
+          <input type="text" id="add-friend-modal-toxid" placeholder="Enter your contact ToxID...">
+          
+          <label>Message:</label>
+          <textarea id="add-friend-modal-message" placeholder="Hey mate, add me and we could talk! :p"></textarea>
+          
+          
+        </main>
+        <footer class="dialog-footer unselectable">
+          <span class="dialog-close-tip">Click anywhere to close the modal</span>
+          <button id="add-friend-modal-send" class="send-request green">Send the request</button>
+        </footer>
+      </dialog>
+    </div>
+    
     <script>
       const filePath = __dirname;
       console.log(filePath);

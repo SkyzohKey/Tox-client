@@ -34,6 +34,7 @@ Tox.prototype.mockup = function () {
   let friendName = "Frosty Disco Thunder Winter Bear 💙";
   let selfName = this.profile.name;
 
+  this.addInfoMessage("516A72B673D4E712... is now known as " + friendName, "check-circle");
   this.addMessage("incoming", friendName, "Hey guy, sup'?", "12:51");
   this.addMessage("outgoing", selfName, "I just come back from Paris, awesome city! :ok_hand:", "12:51");
   this.addMessage("outgoing", selfName, "And you? Any progress on your game?", "12:52");
@@ -45,6 +46,9 @@ Tox.prototype.mockup = function () {
   this.addMessage("outgoing", selfName, "Nice ink work mate", "12:54");
   this.addMessage("outgoing", selfName, "so where's the rest of it", "12:54");
   this.addMessage("incoming", friendName, "With full support for emojione!  😀😬😁😂😃😄😅😆😇😉😊🙂🙃☺😋😌😍😘😗😙😚😜😝😛🤑🤓😎🤗😏😶😐😑😒🙄🤔😳😞😟😠😡😔😕🙁☹😣😖😫😩😤😮😱😨😰😯😦😧😢😥😪😓😭😵😲🤐😷🤒🤕😴💤💩😈👿👹👺💀👻👽🤖😺😸😹😻😼😽 and many more ! ", "12:55");
+  
+  const timestamp = dateformat('dd/MM/yyyy');
+  this.addInfoMessage("Day changed, " + timestamp);
 }
 
 /**
@@ -84,6 +88,9 @@ Tox.prototype.init = function () {
 
   this.contactslist = document.querySelector('#contacts-list');
   this.chatview = document.querySelector('#chatview-content');
+  
+  // Add friend modal.
+  this.modalAddFriend = document.querySelector('#add-friend-modal');
 
   // Update window title and focus the entry.
   this.setTitle("Frosty Disco Thunder Winter Bear 💙");
@@ -214,6 +221,26 @@ Tox.prototype.bindEvents = function () {
   this.buttonShowSettings.addEventListener('click', function (e) {
     this.contactslist.classList.toggle('compact');
   }.bind(this));
+  
+  this.buttonAddContact.addEventListener('click', function (e) {  
+    this.modalAddFriend.classList.toggle('hide');
+    this.modalAddFriend.showModal();
+  }.bind(this));
+  
+  this.modalAddFriend.addEventListener('click', function (e) {
+    // If click occured in the backdrop, close the dialog.
+    const rect = this.modalAddFriend.getBoundingClientRect();
+    const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+    
+    if (!isInDialog) {
+      this.modalAddFriend.classList.toggle('hide');
+      this.modalAddFriend.close();
+    }
+  
+    console.log(e);
+    //this.modalAddFriend.classList.toggle('hide');
+    //this.modalAddFriend.close();
+  }.bind(this));
 }
 
 /**
@@ -249,7 +276,7 @@ Tox.prototype.addMessage = function (direction, author, message, timestamp) {
     timestamp = dateformat('hh:mm', new Date());
   }
 
-  const tpl = `<article class="message message-${direction}">
+  const tpl = `<article class="message message-${direction.escape()}">
     <span class="message-author unselectable ellipsis">${_author.escape()}</span>
     <span class="message-content"><div>${emojione.toImage(message.escape().nl2br())}</div></span>
     <span class="message-timestamp unselectable">${timestamp.escape()}</span>
@@ -262,7 +289,7 @@ Tox.prototype.addMessage = function (direction, author, message, timestamp) {
 }
 
 /**
-* addMessage - Add a message to the current chatview.
+* addFileTransfer - Add a file transfer to the current chatview.
 * TODO: Refactorize this via a FileTransfer class.
 * TODO: Use html templates instead of this big string.
 **/
@@ -278,7 +305,7 @@ Tox.prototype.addFileTransfer = function (direction, author, filename, filesize,
     timestamp = dateformat('hh:mm', new Date());
   }
 
-  const tpl = `<article class="message message-${direction}">
+  const tpl = `<article class="message message-${direction.escape()}">
     <span class="message-author unselectable ellipsis">${_author.escape()}</span>
     <span class="transfer-content">
       <span class="transfer-icon unselectable"></span>
@@ -290,6 +317,25 @@ Tox.prototype.addFileTransfer = function (direction, author, filename, filesize,
       </div>
     </span>
     <span class="message-timestamp unselectable">${timestamp.escape()}</span>
+  </article>`;
+
+  const c = this.chatview.innerHTML;
+  this.chatview.innerHTML = c + tpl;
+  this.scrollChatView();
+}
+
+/**
+* addInfoMessage - Add an informative message to the current chatview.
+**/
+Tox.prototype.addInfoMessage = function (message, icon) {  
+  let _icon = "info-circle";
+  if (icon != undefined) {
+    _icon = icon;
+  }
+
+  const tpl = `<article class="info-message">
+    <span class="fa fa-${_icon.escape()} unselectable"></span>
+    <span class="info-message-content unselectable">${message.escape()}</span>
   </article>`;
 
   const c = this.chatview.innerHTML;

@@ -28,7 +28,7 @@ function createWindow () {
   });
 
   mainWindow.title = "Tox";
-  mainWindow.setMinimumSize(650, 300);
+  mainWindow.setMinimumSize(750, 300);
   //mainWindow.setMenu(null);
 
   proto.registerFileProtocol(protocol, (request, callback) => {

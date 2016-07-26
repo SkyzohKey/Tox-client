@@ -5,8 +5,10 @@ const electron = require('electron');
 const app = electron.remote;
 const ipc = electron.ipcRenderer;
 const toxcore = require('toxcore');
-const emojione = require('emojione');
+const emojione = window.emojione = require('emojione');
 const dateformat = require('date-format');
+window.$ = window.jQuery = require('jquery');
+const jqueryTextComplete = require('jquery-textcomplete');
 
 const ToxStatus = require('./ToxStatus.js');
 const stringHelper = require('../helpers/string.js');
@@ -46,6 +48,8 @@ Tox.prototype.mockup = function () {
   this.addMessage("outgoing", selfName, "Nice ink work mate", "12:54");
   this.addMessage("outgoing", selfName, "so where's the rest of it", "12:54");
   this.addMessage("incoming", friendName, "With full support for emojione!  😀😬😁😂😃😄😅😆😇😉😊🙂🙃☺😋😌😍😘😗😙😚😜😝😛🤑🤓😎🤗😏😶😐😑😒🙄🤔😳😞😟😠😡😔😕🙁☹😣😖😫😩😤😮😱😨😰😯😦😧😢😥😪😓😭😵😲🤐😷🤒🤕😴💤💩😈👿👹👺💀👻👽🤖😺😸😹😻😼😽 and many more ! ", "12:55");
+  this.addQuote("outgoing", selfName, "so where's the rest of it", "12:55");
+  this.addMessage("incoming", friendName, "That's coming soon! :monkey:", "12:55");
   
   const timestamp = dateformat('dd/MM/yyyy');
   this.addInfoMessage("Day changed, " + timestamp);
@@ -57,10 +61,10 @@ Tox.prototype.mockup = function () {
 **/
 Tox.prototype.init = function () {
   // Initialize emojione.
-  emojione.imageType = 'png';
-  emojione.ascii = true;
-  emojione.imagePathPNG = '../assets/images/emojis/png/';
-  emojione.imagePathSVG = '../assets/images/emojis/svg/';
+  emojione.imageType = window.emojione.imageType = 'png';
+  emojione.ascii = window.emojione.ascii = true;
+  emojione.imagePathPNG = window.emojione.imagePathPNG = '../assets/images/emojis/png/';
+  emojione.imagePathSVG = window.emojione.imagePathSVG = '../assets/images/emojis/svg/';
 
   // Define a profile.
   // TODO: Refactorize this in a class.
@@ -86,6 +90,8 @@ Tox.prototype.init = function () {
   this.buttonShowTransfers = document.querySelector('#tox-menu #show-transfers');
   this.buttonShowSettings = document.querySelector('#tox-menu #show-settings');
 
+  this.labelContactsFilter = document.querySelector('#contacts-list-search-label');
+  this.inputContactsFilter = document.querySelector('#contacts-list-search');
   this.contactslist = document.querySelector('#contacts-list');
   this.chatview = document.querySelector('#chatview-content');
   
@@ -203,7 +209,9 @@ Tox.prototype.bindEvents = function () {
 
   // We handle message sending via Enter / We handle shift+enter newline.
   this.entryMessage.addEventListener('keydown', function (e) {
-    if (e.shiftKey && e.keyCode == 13) {
+    if (window.emojiSearch != undefined && window.emojiSearch == true) return true;
+  
+    if (e.shiftKey && e.keyCode == 13) {    
       return true;
     } else if (e.keyCode == 13) { // Message sending.
       e.preventDefault();
@@ -236,11 +244,16 @@ Tox.prototype.bindEvents = function () {
       this.modalAddFriend.classList.toggle('hide');
       this.modalAddFriend.close();
     }
-  
-    console.log(e);
-    //this.modalAddFriend.classList.toggle('hide');
-    //this.modalAddFriend.close();
   }.bind(this));
+  
+  // Can't be done using only css, damn.
+  let toggleLabel = function (e) {
+    if (this.inputContactsFilter.value != "") return;
+    this.labelContactsFilter.classList.toggle('active');
+  };
+  this.inputContactsFilter.addEventListener('active', toggleLabel.bind(this));
+  this.inputContactsFilter.addEventListener('focus', toggleLabel.bind(this));
+  this.inputContactsFilter.addEventListener('blur', toggleLabel.bind(this));
 }
 
 /**
@@ -277,8 +290,37 @@ Tox.prototype.addMessage = function (direction, author, message, timestamp) {
   }
 
   const tpl = `<article class="message message-${direction.escape()}">
-    <span class="message-author unselectable ellipsis">${_author.escape()}</span>
+    <span class="message-author unselectable ellipsis" title="${_author.escape()}">${_author.escape()}</span>
     <span class="message-content"><div>${emojione.toImage(message.escape().nl2br())}</div></span>
+    <span class="message-timestamp unselectable">${timestamp.escape()}</span>
+  </article>`;
+
+  const c = this.chatview.innerHTML;
+  this.chatview.innerHTML = c + tpl;
+  this.entryMessage.value = ''; // Clear the entry once message added.
+  this.scrollChatView();
+}
+
+/**
+* addMessage - Add a message to the current chatview.
+* TODO: Refactorize this using a Message class.
+* TODO: Use html templates instead of this big string.
+**/
+Tox.prototype.addQuote = function (direction, author, message, timestamp) {
+  let _author = "";
+  if (this.latestDirection != direction) {
+    _author = author;
+  }
+  
+  this.latestDirection = direction;
+
+  if (timestamp === undefined) {
+    timestamp = dateformat('hh:mm', new Date());
+  }
+
+  const tpl = `<article class="message message-${direction.escape()}">
+    <span class="message-author unselectable ellipsis" title="${_author.escape()}">${_author.escape()}</span>
+    <span class="message-content quote"><div>&gt;${emojione.toImage(message.escape().nl2br())}</div></span>
     <span class="message-timestamp unselectable">${timestamp.escape()}</span>
   </article>`;
 
@@ -306,7 +348,7 @@ Tox.prototype.addFileTransfer = function (direction, author, filename, filesize,
   }
 
   const tpl = `<article class="message message-${direction.escape()}">
-    <span class="message-author unselectable ellipsis">${_author.escape()}</span>
+    <span class="message-author unselectable ellipsis" title="${_author.escape()}">${_author.escape()}</span>
     <span class="transfer-content">
       <span class="transfer-icon unselectable"></span>
       <span class="transfer-name ellipsis">${filename.escape()}</span>

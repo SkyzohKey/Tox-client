@@ -21,6 +21,7 @@
         </button>
       </section>
       <section id="contacts-list-filters">
+        <label for="contacts-list-search" id="contacts-list-search-label" class="fa fa-search" aria-hidden="true"></label>
         <input id="contacts-list-search" placeholder="Type to search...">
         <button id="contacts-list-filter">Online</button>
       </section>
@@ -172,11 +173,68 @@
         </footer>
       </dialog>
     </div>
-    
+
+    <script src="../helpers/emojiStrategy.js"></script>
     <script>
-      const filePath = __dirname;
-      console.log(filePath);
       require('../controllers/renderer.js');
+      
+      // SHAME ON ME FOR USING JQUERY BUT THERE IS NO OTHER SIMPLE WAY :'(
+      $("#chatview-entry").textcomplete([{
+        match: /\B:([\-+\w]*)$/,
+        search: function (term, callback) {
+          var results = [];
+          var results2 = [];
+          var results3 = [];
+          $.each(emojiStrategy, function(shortname,data) {
+            if(shortname.indexOf(term) > -1) { results.push(shortname); }
+            else {
+              if((data.aliases !== null) && (data.aliases.indexOf(term) > -1)) {
+                results2.push(shortname);
+              }
+              else if((data.keywords !== null) && (data.keywords.indexOf(term) > -1)) {
+                results3.push(shortname);
+              }
+            }
+          });
+
+          if(term.length >= 3) {
+            results.sort(function(a,b) { return (a.length > b.length); });
+            results2.sort(function(a,b) { return (a.length > b.length); });
+            results3.sort();
+          }
+          var newResults = results.concat(results2).concat(results3);
+
+          callback(newResults);
+        },
+        template: function (shortname) {
+          window.emojiSearch = true;
+          return `${emojione.shortnameToImage(':'+shortname+':')} :${shortname}:`;
+        },
+        replace: function (shortname) {
+          window.emojiSearch = false;
+          return ':'+shortname+': ';
+        },
+        index: 1,
+        maxCount: 5
+      }], {
+        //height: 265,
+        maxCount: 5,
+        placement: 'top',
+        debounce: 500,
+        noResultsMessage: "<small style='padding: 0 10px;'>No emoji found for this pattern.</small>",
+        onKeydown: function (e, commands) {
+          // `commands` has `KEY_UP`, `KEY_DOWN`, `KEY_ENTER`, `KEY_PAGEUP`, `KEY_PAGEDOWN`,
+          // `KEY_ESCAPE` and `SKIP_DEFAULT`.
+          if (e.keyCode === 13) {
+            // Treat CTRL-J as enter key.
+            return commands.KEY_ENTER;
+          } else if (e.keyCode === 27 || e.keyCode === 8) {
+            window.emojiSearch = false;
+          }
+          // If the function does not return a result or undefined is returned,
+          // the plugin uses default behavior.
+        }
+      });
     </script>
   </body>
 </html>

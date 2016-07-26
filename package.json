@@ -17,7 +17,16 @@
     "type": "git",
     "url": "git+https://github.com/SkyzohKey/Tox-client.git"
   },
-  "keywords": [ "Tox", "Toxcore", "client", "Instant Messaging", "im", "secure", "p2p", "encrypted" ],
+  "keywords": [
+    "Tox",
+    "Toxcore",
+    "client",
+    "Instant Messaging",
+    "im",
+    "secure",
+    "p2p",
+    "encrypted"
+  ],
   "author": "SkyzohKey <skyzohkey@invmail.io>",
   "license": "MIT",
   "bugs": {
@@ -30,6 +39,8 @@
     "date-format": "0.0.2",
     "electron-context-menu": "^0.4.0",
     "emojione": "^2.2.6",
+    "jquery": "^3.1.0",
+    "jquery-textcomplete": "^1.6.2",
     "toxcore": "^1.3.0"
   }
 }

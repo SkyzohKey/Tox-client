@@ -21,6 +21,7 @@ Learn more about Electron and its API in the [documentation](http://electron.ato
 
 ## Moaaar screenshots!
 ![Tox client add friend modal screenshot](http://i.imgur.com/csbDNWd.png)
+![Tox client emoji autocomplete](http://i.imgur.com/fcOYraP.png)
 
 ## Compiling for your OS
 You can use any of the following commands to create distributable ready builds.

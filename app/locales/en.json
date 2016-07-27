@@ -1,0 +1,43 @@
+{
+  "contactslist": {
+    "titles": {
+      "user-profile-avatar": "Change your avatar",
+      "user-profile-status": "Change your status",
+      "menu-add-contact": "Add a contact",
+      "menu-new-group": "Create a group",
+      "menu-show-transfers": "File transers",
+      "menu-show-settings": "Preferences",
+    },
+    "search-contacts-placeholder": "Type to search...",
+  },
+  "chatview": {
+    "titles": {
+      "call-audio": "Audio call",
+      "call-video": "Video call",
+      "choose-emojis": "Open the emoji chooser",
+      "send-file": "Send file",
+      "send-message": "Send message",
+    }
+  },
+  "modals": {
+    "add-contact": {
+      "title": "Add a contact",
+      "toxid-label": "ToxID or alias:",
+      "toxid-placeholder": "Enter your contact ToxID...",
+      "message-label": "Message:",
+      "message-placeholder": "Hey mate, add me and we could talk! :p",
+      "close-modal-tip": "Click anywhere to close the modal",
+      "send-request": "Send the request",
+    }
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Away",
+    "busy": "Busy",
+    "blocked": "Blocked",
+  },
+  "misc": {
+    "no-emoji-pattern": "No emoji found for this pattern",
+  }
+}

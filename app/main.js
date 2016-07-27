@@ -7,8 +7,6 @@ const BrowserWindow = electron.BrowserWindow;
 // Our internal protocol
 const protocol = "tox";
 
-console.log("main", __dirname);
-
 // Allow right click context menu.
 require('electron-context-menu')({
   showInspectElement: false,
@@ -20,22 +18,40 @@ let mainWindow;
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
+  /*mainWindow = new BrowserWindow({
     width: 960,
     height: 500,
     center: true,
     autoHideMenuBar: true,
+  });*/
+  mainWindow = new BrowserWindow({
+    width: 500,
+    height: 250,
+    center: true,
+    autoHideMenuBar: true,
+    resizable: false,
   });
 
   mainWindow.title = "Tox";
-  mainWindow.setMinimumSize(750, 300);
+  /*mainWindow.setMinimumSize(750, 300);*/
+  mainWindow.setMinimumSize(500, 250);
   //mainWindow.setMenu(null);
 
   proto.registerFileProtocol(protocol, (request, callback) => {
     const url = request.url.substr(protocol.length + 3);
     mainWindow.webContents.send('protocol-activated', url);
-    //callback({ path: path.normalize(__dirname + '/' + url) });
-    console.log('Successfuly registered protocol `' + protocol + '://`');
+    
+    if (url == 'main-window') {
+      mainWindow.setSize(960, 500);
+      mainWindow.setMinimumSize(750, 300);
+      mainWindow.setResizable(true);
+      mainWindow.loadURL(`file://${__dirname}/views/${url}.html`);
+      return;
+    }
+    
+    //mainWindow.loadURL(`file://${__dirname}/views/${url}`);
+    //callback({ path: path.normalize(__dirname + '/views/' + url) });
+    console.log('Successfuly registered protocol `' + protocol + '://' + url + '`', __dirname + '/' + url);
   }, (err) => {
     if (err) {
       console.error('Failed to register internal protocol.', err);
@@ -90,7 +106,4 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow()
   }
-})
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+});

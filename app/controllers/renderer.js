@@ -290,9 +290,9 @@ Tox.prototype.addMessage = function (direction, author, message, timestamp) {
   }
 
   const tpl = `<article class="message message-${direction.escape()}">
-    <span class="message-author unselectable ellipsis" title="${_author.escape()}">${_author.escape()}</span>
+    <span class="message-author unselectable ellipsis" aria-hidden="true" title="${_author.escape()}">${_author.escape()}</span>
     <span class="message-content"><div>${emojione.toImage(message.escape().nl2br())}</div></span>
-    <span class="message-timestamp unselectable">${timestamp.escape()}</span>
+    <span class="message-timestamp unselectable" aria-hidden="true">${timestamp.escape()}</span>
   </article>`;
 
   const c = this.chatview.innerHTML;
@@ -319,9 +319,9 @@ Tox.prototype.addQuote = function (direction, author, message, timestamp) {
   }
 
   const tpl = `<article class="message message-${direction.escape()}">
-    <span class="message-author unselectable ellipsis" title="${_author.escape()}">${_author.escape()}</span>
+    <span class="message-author unselectable ellipsis" aria-hidden="true" title="${_author.escape()}">${_author.escape()}</span>
     <span class="message-content quote"><div>&gt;${emojione.toImage(message.escape().nl2br())}</div></span>
-    <span class="message-timestamp unselectable">${timestamp.escape()}</span>
+    <span class="message-timestamp unselectable" aria-hidden="true">${timestamp.escape()}</span>
   </article>`;
 
   const c = this.chatview.innerHTML;
@@ -348,17 +348,17 @@ Tox.prototype.addFileTransfer = function (direction, author, filename, filesize,
   }
 
   const tpl = `<article class="message message-${direction.escape()}">
-    <span class="message-author unselectable ellipsis" title="${_author.escape()}">${_author.escape()}</span>
+    <span class="message-author unselectable ellipsis" aria-hidden="true" title="${_author.escape()}">${_author.escape()}</span>
     <span class="transfer-content">
-      <span class="transfer-icon unselectable"></span>
+      <span class="transfer-icon unselectable" aria-hidden="true"></span>
       <span class="transfer-name ellipsis">${filename.escape()}</span>
-      <span class="transfer-size">${filesize.escape()}</span>
+      <span class="transfer-size" aria-hidden="true">${filesize.escape()}</span>
       <div class="transfer-actions unselectable">
-        <button class="transfer-accept"></button>
-        <button class="transfer-reject"></button>
+        <button class="transfer-accept" aria-hidden="true" title="Accept file transfer"></button>
+        <button class="transfer-reject" aria-hidden="true" title="Cancel file transfer"></button>
       </div>
     </span>
-    <span class="message-timestamp unselectable">${timestamp.escape()}</span>
+    <span class="message-timestamp unselectable" aria-hidden="true">${timestamp.escape()}</span>
   </article>`;
 
   const c = this.chatview.innerHTML;

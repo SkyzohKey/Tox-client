@@ -3,6 +3,7 @@
 **/
 @import 'fonts.css';
 @import 'fa.css';
+@import 'helpers.css';
 
 /**
 * HTML reset.
@@ -21,64 +22,6 @@ html, body {
 
   display: flex;
   flex: 1;
-}
-.unselectable {
-  -webkit-user-select: none;
-  cursor: default;
-}
-.ellipsis {
-  display: inline-block;
-  white-space: nowrap;
-  min-width: 0;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  box-sizing: border-box;
-}
-
-/**
-* Helpers.
-**/
-button {
-  background-color: #6BC260;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #8edb84 !important;
-}
-button:active {
-  background-color: #27ae60 !important;
-}
-
-.emojione {
-  width: 16px;
-  height: 16px;
-
-  position: relative;
-  top: 2px;
-}
-
-.green {
-  background-color: #6BC260 !important;
-  color: #ffffff !important;
-}
-.green:hover {
-  background-color: #8edb84 !important;
-}
-.green:active {
-  background-color: #27ae60 !important;
-}
-.red {
-  background-color: #e74c3c !important;
-  color: #ffffff !important;
-}
-.red:hover {
-  background-color: #f38175 !important;
-}
-.red:active {
-  background-color: #ef2929 !important;
 }
 
 /**
@@ -356,7 +299,7 @@ aside {
   color: #fff;
 }
 #tox-menu button:hover {
-  background-color: #333333 !important;
+  background-color: /*#333333*/ #6BC260 !important;
   opacity: 1;
 }
 #tox-menu #add-contact {

@@ -2,239 +2,47 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Tox - Chips Handson - Frosty Disco Thunder Winter Bear 💙</title>
+    <title>Tox</title>
 
-    <link rel="stylesheet" href="../assets/styles/tox.css">
+    <!--<link rel="stylesheet" href="../assets/styles/tox.css">-->
+    <link rel="stylesheet" href="../assets/styles/tox-login.css">
   </head>
   <body>
-    <aside class="unselectable">
-      <section id="user-profile">
-        <img id="user-avatar" src="../assets/images/mockup/avatar-004.png">
-        <div id="user-infos">
-          <span id="user-name" class="ellipsis" tabindex="-1" contenteditable="true">Chips Handon</span>
-          <span id="user-mood" class="ellipsis" tabindex="-1" contenteditable="true">Cracking the code.</span>
-        </div>
-        <button id="user-presence">
-          <div class="contact-presence">
-            <span class="offline"></span>
-          </div>
-        </button>
-      </section>
-      <section id="contacts-list-filters">
-        <label for="contacts-list-search" id="contacts-list-search-label" class="fa fa-search" aria-hidden="true"></label>
-        <input id="contacts-list-search" placeholder="Type to search...">
-        <button id="contacts-list-filter">Online</button>
-      </section>
-      <section id="contacts-list" class="not-compact">
-        <article class="contact">
-          <img class="contact-avatar" src="../assets/images/mockup/avatar-001.png">
-          <div class="contact-infos">
-            <span class="contact-name ellipsis">Kev💙Ashcorp</span>
-            <span class="contact-mood ellipsis">Dropped the ball harder than you could ever believe</span>
-          </div>
-          <div class="contact-presence">
-            <span class="online-notify"></span>
-          </div>
-        </article>
-        <article class="contact active">
-          <img class="contact-avatar" src="../assets/images/mockup/avatar-000.png">
-          <div class="contact-infos">
-            <span class="contact-name ellipsis">Frosty Disco Thunder Winter Bear 💙</span>
-            <span class="contact-mood ellipsis">Working on my new game: Door First!</span>
-          </div>
-          <div class="contact-presence">
-            <span class="online"></span>
-          </div>
-        </article>
-        <article class="contact">
-          <img class="contact-avatar" src="../assets/images/mockup/avatar-002.jpg">
-          <div class="contact-infos">
-            <span class="contact-name ellipsis">Loli</span>
-            <span class="contact-mood ellipsis">In Britain, some birds are flying</span>
-          </div>
-          <div class="contact-presence">
-            <span class="away"></span>
-          </div>
-        </article>
-        <article class="contact">
-          <img class="contact-avatar" src="../assets/images/mockup/avatar-005.jpg">
-          <div class="contact-infos">
-            <span class="contact-name ellipsis">Rowedahelicon</span>
-            <span class="contact-mood ellipsis">What's in a word if the...</span>
-          </div>
-          <div class="contact-presence">
-            <span class="away-notify"></span>
-          </div>
-        </article>
-        <article class="contact">
-          <img class="contact-avatar" src="../assets/images/mockup/avatar-003.jpg">
-          <div class="contact-infos">
-            <span class="contact-name ellipsis">Shag Rogers</span>
-            <span class="contact-mood ellipsis">CAN'T BAG THE SHAG</span>
-          </div>
-          <div class="contact-presence">
-            <span class="busy"></span>
-          </div>
-        </article>
-        <article class="contact">
-          <img class="contact-avatar" src="../assets/images/mockup/avatar-006.jpg">
-          <div class="contact-infos">
-            <span class="contact-name ellipsis">Chris X</span>
-            <span class="contact-mood ellipsis">Arting, brb</span>
-          </div>
-          <div class="contact-presence">
-            <span class="offline-notify"></span>
-          </div>
-        </article>
-        <article class="contact">
-          <img class="contact-avatar" src="../assets/images/mockup/avatar-007.jpg">
-          <div class="contact-infos">
-            <span class="contact-name ellipsis">David (steamboat)</span>
-            <span class="contact-mood ellipsis">im good</span>
-          </div>
-          <div class="contact-presence">
-            <span class="offline"></span>
-          </div>
-        </article>
-        <article class="contact">
-          <img class="contact-avatar" src="../assets/images/icons/default-avatar.svg">
-          <div class="contact-infos">
-            <span class="contact-name ellipsis">Tristious</span>
-            <span class="contact-mood ellipsis">thanks</span>
-          </div>
-          <div class="contact-presence">
-            <span class="offline"></span>
-          </div>
-        </article>
-        <article class="contact">
-          <img class="contact-avatar" src="../assets/images/icons/default-avatar.svg">
-          <div class="contact-infos">
-            <span class="contact-name ellipsis">Vincent Estrada</span>
-            <span class="contact-mood ellipsis">txt me if u need me</span>
-          </div>
-          <div class="contact-presence">
-            <span class="offline"></span>
-          </div>
-        </article>
-      </section>
-      <section id="tox-menu">
-        <button id="add-contact"></button>
-        <button id="new-group"></button>
-        <button id="show-transfers"></button>
-        <button id="show-settings"></button>
-      </section>
-    </aside>
-    <main>
-      <header id="chatview-header">
-        <img id="contact-avatar" class="unselectable" src="../assets/images/mockup/avatar-000.png">
-        <div>
-          <span class="contact-name">Frosty Disco Thunder Winter Bear 💙</span>
-          <span class="contact-mood">Working on my new game: Door First!</span>
-        </div>
-        <section id="chatview-header-actions" class="unselectable">
-          <button id="call-audio"></button>
-          <button id="call-video"></button>
+    <div id="wrapper" class="unselectable">
+      <aside id="tox-login-info">
+        <section id="presentation">
+          <div id="tox-logo"></div>
+          <h1>Tox</h1>
         </section>
-      </header>
-      <section id="chatview-content"></section>
-      <section id="chatview-is-typing" class="unselectable">
-        <span class="typing-loader"></span>
-        <span class="typing-content">Frosty Disco Thunder Winter Bear 💙 is typing...</span>
-      </section>
-      <footer id="chatview-footer" class="unselectable">
-        <textarea id="chatview-entry" placeholder="Type your message here..."></textarea>
-        <div id="chatview-footer-actions">
-          <button id="chatview-emojis"></button>
-          <button id="chatview-send-file"></button>
+        <section id="links">
+          <a href="tox://main-window">
+            <span class="fa fa-user-plus"></span>
+            Register
+          </a>
+          <!--<a href="#">Settings</a>-->
+        </section>
+      </aside>
+      <main id="tox-login-container">
+        <!--<div id="profile-errors">
+          <span class="fa fa-exclamation-triangle"></span>
+          Password is incorrect.
+        </div>-->
+        <div id="profile-wrapper">
+          <section id="profile">
+            <div id="profile-avatar" class="avatar-default"></div>
+            <div id="profile-stuff">
+              <input type="text" id="profile-name" placeholder="Profile name...">
+              <input type="password" id="profile-pass" placeholder="Profile decryption password...">
+            </div>
+          </section>
+          <section id="profile-actions">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember password?</label>
+            
+            <button id="button-login">Login</button>
+          </section>
         </div>
-        <button id="chatview-send-message"></button>
-      </footer>
-    </main>
-    
-    <!-- Overlay + modal -->
-    <div id="overlay" class=""></div>
-    <div id="dialog-wrapper">
-      <dialog id="add-friend-modal" class="hide">
-        <header class="dialog-header unselectable">
-          <span class="fa fa-plus-circle"></span> Add a friend
-        </header>
-        <main class="dialog-content unselectable">
-          <label>ToxID or alias:</label>
-          <input type="text" id="add-friend-modal-toxid" placeholder="Enter your contact ToxID...">
-          
-          <label>Message:</label>
-          <textarea id="add-friend-modal-message" placeholder="Hey mate, add me and we could talk! :p"></textarea>
-          
-          
-        </main>
-        <footer class="dialog-footer unselectable">
-          <span class="dialog-close-tip">Click anywhere to close the modal</span>
-          <button id="add-friend-modal-send" class="send-request green">Send the request</button>
-        </footer>
-      </dialog>
+      </main>
     </div>
-
-    <script src="../helpers/emojiStrategy.js"></script>
-    <script>
-      require('../controllers/renderer.js');
-      
-      // SHAME ON ME FOR USING JQUERY BUT THERE IS NO OTHER SIMPLE WAY :'(
-      $("#chatview-entry").textcomplete([{
-        match: /\B:([\-+\w]*)$/,
-        search: function (term, callback) {
-          var results = [];
-          var results2 = [];
-          var results3 = [];
-          $.each(emojiStrategy, function(shortname,data) {
-            if(shortname.indexOf(term) > -1) { results.push(shortname); }
-            else {
-              if((data.aliases !== null) && (data.aliases.indexOf(term) > -1)) {
-                results2.push(shortname);
-              }
-              else if((data.keywords !== null) && (data.keywords.indexOf(term) > -1)) {
-                results3.push(shortname);
-              }
-            }
-          });
-
-          if(term.length >= 3) {
-            results.sort(function(a,b) { return (a.length > b.length); });
-            results2.sort(function(a,b) { return (a.length > b.length); });
-            results3.sort();
-          }
-          var newResults = results.concat(results2).concat(results3);
-
-          callback(newResults);
-        },
-        template: function (shortname) {
-          window.emojiSearch = true;
-          return `${emojione.shortnameToImage(':'+shortname+':')} :${shortname}:`;
-        },
-        replace: function (shortname) {
-          window.emojiSearch = false;
-          return ':'+shortname+': ';
-        },
-        index: 1,
-        maxCount: 5
-      }], {
-        //height: 265,
-        maxCount: 5,
-        placement: 'top',
-        debounce: 500,
-        noResultsMessage: "<small style='padding: 0 10px;'>No emoji found for this pattern.</small>",
-        onKeydown: function (e, commands) {
-          // `commands` has `KEY_UP`, `KEY_DOWN`, `KEY_ENTER`, `KEY_PAGEUP`, `KEY_PAGEDOWN`,
-          // `KEY_ESCAPE` and `SKIP_DEFAULT`.
-          if (e.keyCode === 13) {
-            // Treat CTRL-J as enter key.
-            return commands.KEY_ENTER;
-          } else if (e.keyCode === 27 || e.keyCode === 8) {
-            window.emojiSearch = false;
-          }
-          // If the function does not return a result or undefined is returned,
-          // the plugin uses default behavior.
-        }
-      });
-    </script>
   </body>
 </html>

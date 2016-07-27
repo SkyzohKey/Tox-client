@@ -1,0 +1,237 @@
+@import 'helpers.css';
+@import 'fa.css';
+@import 'fonts.css';
+
+/**
+* HTML reset.
+**/
+* {
+  box-sizing: border-box;
+  font-family: Aller;
+}
+*:focus, *:active {
+  outline: none;
+}
+
+html, body, #wrapper {
+  width: 100vw;
+  height: 100vh;
+
+  margin: 0;
+  padding: 0;
+}
+
+.fa {
+  margin-right: 10px;
+  font-size: 12px;
+}
+.error {
+  border: 1px solid #e74c3c !important;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+#tox-login-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  flex: 0 0 150px;
+  
+  text-align: center;
+  background-color: #333333;
+}
+#tox-login-info #presentation {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
+  
+  width: 100%;
+  padding: 10px;
+}
+#tox-login-info #presentation #tox-logo {
+  width: 60px;
+  height: 80px;
+  
+  background: transparent url('../images/tox-logo.svg') no-repeat center center;
+  background-size: 60px 80px;
+}
+#tox-login-info #presentation h1 {
+  display: flex;
+  align-items: center;
+  
+  margin: 0;
+  
+  color: #fff;
+  font-size: 48px;
+}
+#tox-login-info #links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
+  
+  width: 100%;    
+}
+#tox-login-info #links a {
+  height:30px;
+  width: 100%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background-color: #222;
+  border-bottom: 1px solid #171717;
+  color: #fff;
+  text-decoration: none;
+}
+#tox-login-info #links a:hover {
+  background-color: #444;
+}
+#tox-login-info #links a:active {
+  background-color: #171717;
+}
+#tox-login-container {
+  height: 100vh;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-content: center;
+  align-self: initial;
+  align-items: stretch;
+  
+  padding: 20px;
+  
+  color: #fff;
+  text-align: center;
+  background: url('../images/login-background.png') no-repeat center center /cover;
+  justify-content: center;
+}
+#tox-login-container #profile-errors {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  
+  background-color: #e74c3c;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 12px;
+}
+#tox-login-container #profile-wrapper {
+  display: flex;
+  flex-direction: column;
+  
+  padding: 10px;
+  
+  background-color: #eee;
+  border-radius: 5px;
+  color: #171717;
+}
+#tox-login-container #profile {
+  display: flex;
+  flex-direction: row;
+  
+  margin-bottom: 10px;
+}
+#tox-login-container #profile-avatar {
+  width: 55px;
+  height: 55px;
+  
+  margin: 0 10px 0 0;
+  padding: 0;
+  
+  border-radius: 5px;
+  /*border: 1px solid #ccc;*/
+  
+  background: transparent url('../images/mockup/avatar-004.png') no-repeat center center;
+  background-size: 55px 55px;
+}
+#tox-login-container #profile-wrapper #profile-stuff {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+#tox-login-container #profile-wrapper #profile-stuff input:first-child {
+  margin-bottom: 4px;
+}
+#tox-login-container #profile-wrapper #profile-stuff input {
+  height: 26px;
+  padding: 0 5px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#tox-login-container #profile-wrapper #profile-stuff input:focus {
+  border: 1px solid #3498db !important;
+}
+#tox-login-container #profile-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#tox-login-container #profile-actions label {
+  font-weight: lighter;
+  font-size: 12px;
+  line-height: 18px;
+  cursor: pointer;
+}
+#tox-login-container #profile-actions label::after {
+  content: "|";
+  height: 100%;
+  width: 2px;
+  /* background-color: red; */
+  margin: 0 10px;
+  color: #bbb;
+}
+
+#tox-login-container #profile-actions button {
+  flex: 1;
+  padding: 3px 5px;
+
+  background-color: #6BC260;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: bold;
+}
+#tox-login-container #profile-actions button:hover {
+  background-color: #8edb84 !important;
+}
+#tox-login-container #profile-actions button:active {
+  background-color: #27ae60 !important;
+}
+
+#register-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+  margin: 10px 0 0 0;
+  padding: 5px;
+  
+  /*background-color: #eee;*/
+  border-radius: 5px;
+  color: #171717;
+  font-size: 12px;
+}
+
+
+
+
+
+

@@ -33,7 +33,8 @@
     "url": "https://github.com/SkyzohKey/Tox-client/issues"
   },
   "devDependencies": {
-    "electron-prebuilt": "^1.2.0"
+    "electron-prebuilt": "^1.2.0",
+    "electron-reload": "^1.0.1"
   },
   "dependencies": {
     "date-format": "0.0.2",

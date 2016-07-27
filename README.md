@@ -20,6 +20,7 @@ npm install && npm run dev
 Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/latest).
 
 ## Moaaar screenshots!
+![Tox client login screenshot](http://i.imgur.com/Mn7iPvY.png)
 ![Tox client add friend modal screenshot](http://i.imgur.com/csbDNWd.png)
 ![Tox client emoji autocomplete](http://i.imgur.com/fcOYraP.png)
 
